@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DatabaseDictionary {
-    private static final String USER_NAME = "root";
-    private static final String PASSWORD = "chi26543";
-    private static final String DB_NAME = "edict";
+    private static final String USER_NAME = "";
+    private static final String PASSWORD = "";
+    private static final String DB_NAME = "";
     private static final String MYSQL_URL =
             "jdbc:mysql://localhost:3306/" + DB_NAME;
 
@@ -102,7 +102,7 @@ public class DatabaseDictionary {
     }
 
     public String lookUpWord(final String target) {
-        final String SQL_QUERY = "SELECT definition FROM dictionary WHERE target = ?";
+        final String SQL_QUERY = "SELECT detail FROM tbl_edict WHERE word = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
@@ -111,7 +111,7 @@ public class DatabaseDictionary {
                 ResultSet rs = ps.executeQuery();
                 try {
                     if (rs.next()) {
-                        String explain = htmlToText(rs.getString("definition"));
+                        String explain = htmlToText(rs.getString("detail"));
                         return explain;
                     } else {
                         return "No words were found";
@@ -126,14 +126,6 @@ public class DatabaseDictionary {
             e.printStackTrace();
         }
         return "No words were found";
-    }
-
-    public static void main(String[] args) {
-        DatabaseDictionary data = new DatabaseDictionary();
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        System.out.println(data.lookUpWord(s));
-        ArrayList<Word> list = new ArrayList<>();
     }
 }
 
