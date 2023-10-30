@@ -1,5 +1,4 @@
 package Dictionary;
-
 import org.jsoup.Jsoup;
 
 import java.sql.*;

@@ -1,25 +1,43 @@
 package Controller;
 
+import Dictionary.DatabaseDictionary;
+import Dictionary.Dictionary;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
-public class SearchController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
+public class SearchController implements Initializable {
+    private Dictionary dictionary;
+    private DatabaseDictionary dtb;
+    private String target;
     @FXML
     private ListView<String> listview;
-
     @FXML
     private TextField searchBar;
-
     @FXML
-    private Button speakerUSButton;
-
+    private Button speakerUSButton, speakerVNButton, editButton, searchBtn, exitBtn;
     @FXML
-    private Button speakerVNButton;
-
+    private ImageView saveBtn;
     @FXML
     void editButton(MouseEvent event) {
 
@@ -27,7 +45,8 @@ public class SearchController {
 
     @FXML
     void exitButton(MouseEvent event) {
-
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -37,11 +56,22 @@ public class SearchController {
 
     @FXML
     void ggTranslateButton(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/TranslateUI.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
+            stage.setTitle("Translator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void infoButton(MouseEvent event) {
+
 
     }
 
@@ -70,5 +100,15 @@ public class SearchController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //todo
+        searchBtn.setOnAction(evt->{
+            dtb = new DatabaseDictionary();
+            String target = searchBar.getText();
+            System.out.println(dtb.lookUpWord(target));
+        });
+    }
 }
 

@@ -52,7 +52,7 @@
                               <Insets left="2.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onMouseClicked="#searchButton" prefHeight="35.0" prefWidth="50.0" styleClass="search-box-search-button" stylesheets="@../style.css" textFill="WHITE">
+                        <Button fx:id="searchBtn" mnemonicParsing="false" onMouseClicked="#searchButton" prefHeight="35.0" prefWidth="50.0" styleClass="search-box-search-button" stylesheets="@../style.css" textFill="WHITE">
                            <font>
                               <Font name="SansSerif Bold" size="20.0" />
                            </font>
