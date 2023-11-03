@@ -37,3 +37,50 @@
 .middle-bar {
     -fx-background-color: #bdc9c9;
 }
+
+.translate-bar {
+    -fx-font-family: "Itim";
+}
+
+.show-explain {
+    -fx-font-size: 24px;
+    -fx-border-radius: 50px;
+}
+
+@font-face {
+    src: url("/font/Itim-Regular.ttf");
+}
+
+.root {
+    -fx-background-color: #a8cff0;
+}
+.home {
+    -fx-font-size: 40px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+
+.game-menu {
+    -fx-background-radius: 20px;
+    -fx-background-color: #fbeaeb;
+    -fx-font-size: 32px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+
+.choice-btn {
+    -fx-background-radius: 20px;
+    -fx-background-color: #fbeaeb;
+    -fx-font-size: 20px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+
+.question {
+    -fx-border-color: transparent;
+    -fx-background-color: #fbeaeb;
+    -fx-background-radius: 20px;
+    -fx-font-size: 24px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}

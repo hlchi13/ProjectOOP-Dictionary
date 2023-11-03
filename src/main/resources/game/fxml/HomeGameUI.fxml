@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="900.0" styleClass="root" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Game.GameController">
+   <children>
+      <Label layoutX="233.0" layoutY="70.0" prefHeight="85.0" prefWidth="434.0" styleClass="home" stylesheets="@../../style.css" text="Multiple Choice Game" textAlignment="CENTER">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="backBtn" layoutX="299.0" layoutY="282.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="302.0" styleClass="game-menu" stylesheets="@../../style.css" text="Back to Search" />
+      <Button fx:id="playBtn" layoutX="299.0" layoutY="175.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="302.0" styleClass="game-menu" stylesheets="@../../style.css" text="Play" />
+      <Button fx:id="exitBtn" layoutX="299.0" layoutY="399.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="302.0" styleClass="game-menu" stylesheets="@../../style.css" text="Exit" />
+   </children>
+</AnchorPane>
