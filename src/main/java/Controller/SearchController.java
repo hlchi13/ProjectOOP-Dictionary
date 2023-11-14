@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
@@ -53,7 +54,7 @@ public class SearchController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/TranslateUI.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-
+            scene.getStylesheets().add(getClass().getResource("game.css").toExternalForm());
             stage.setTitle("Translator");
             stage.setScene(scene);
             stage.show();
@@ -65,11 +66,10 @@ public class SearchController implements Initializable {
     @FXML
     void infoButton(MouseEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/game/fxml/HomeGameUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/MultipleChoiceGame/fxml/HomeGameUI.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-
-            stage.setTitle("Let's play a game!");
+            stage.setTitle("Let's play a MultipleChoiceGame!");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -107,9 +107,14 @@ public class SearchController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //todo
+        dtb = new DatabaseDictionary();
+        try {
+            dtb.connectToDatabase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         searchBtn.setOnAction(evt->{
-            dtb = new DatabaseDictionary();
-            String target = searchBar.getText();
+            target = searchBar.getText();
             System.out.println(dtb.showExplain(target));
         });
     }
