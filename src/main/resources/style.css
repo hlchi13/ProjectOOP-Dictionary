@@ -59,7 +59,9 @@
 
 .definition-area:focused .content {
     -fx-background-color: #fff;
+    -fx-border-color: black;
 }
+
 
 @font-face {
     src: url("/MultipleChoiceGame/font/Itim-Regular.ttf");
