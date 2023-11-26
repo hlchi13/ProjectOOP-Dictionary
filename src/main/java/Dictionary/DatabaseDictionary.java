@@ -3,6 +3,7 @@ package Dictionary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Node;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class DatabaseDictionary {
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "DUXNHAM08012004";
+    private static final String PASSWORD = "chi26543";
     private static final String DB_NAME = "dictionary";
     private static final String MYSQL_URL =
             "jdbc:mysql://localhost:3306/" + DB_NAME;
@@ -55,6 +56,7 @@ public class DatabaseDictionary {
 
     /**
      * Convert HTML to text keeping linebreaks
+     *
      * @param html text
      * @return text
      * Ref: https://stackoverflow.com/questions/2513707/how-to-convert-html-to-text-keeping-linebreaks
@@ -106,7 +108,7 @@ public class DatabaseDictionary {
                     while (rs.next()) {
                         words.add(rs.getString(2));
                     }
-                    return  words;
+                    return words;
                 } finally {
                     close(rs);
                 }
@@ -255,10 +257,8 @@ public class DatabaseDictionary {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return  false;
+            return false;
         }
     }
-
-
 }
 

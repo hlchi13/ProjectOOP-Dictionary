@@ -10,10 +10,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                .getResource("fxml/SearchUI.fxml"));
+                .getResource("/fxml/NavigationBar.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("Dictionary");
         stage.setScene(scene);
         stage.show();

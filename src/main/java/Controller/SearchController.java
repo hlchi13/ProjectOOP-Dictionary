@@ -1,9 +1,8 @@
 package Controller;
 
 import Dictionary.DatabaseDictionary;
-import Dictionary.Dictionary;
 import Dictionary.Trie;
-import javafx.application.Platform;
+import Game.Entities.Cat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,16 +12,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -35,21 +36,39 @@ import static Dictionary.Speech.speakInEn;
 
 
 public class SearchController implements Initializable{
-    private Dictionary dictionary;
     ObservableList<String> autoCom = FXCollections.observableArrayList();
     private String currentSearchWord = "";
     private String definition;
 
     @FXML
-    private TextArea definitionSite;
+    private ScrollPane definitionSite;
+    @FXML
+    private TextArea editSite;
     @FXML
     private ListView<String> list;
     @FXML
     private TextField searchBar;
     @FXML
-    private Button speakerUSButton, speakerVNButton, editButton, searchBtn, exitBtn;
+    private Button clearBtn, saveEditBtn, cancelEditBtn, toMarkBtn, isMarkedBtn;
     @FXML
-    private ImageView saveBtn;
+    private Label selectedWord, notFound;
+
+    public void refreshSearcher() {
+        selectedWord.setText("Target");
+        searchBar.setText("Nhập từ");
+        notFound.setVisible(false);
+        clearBtn.setVisible(false);
+        toMarkBtn.setVisible(true);
+        isMarkedBtn.setVisible(false);
+        definitionSite.setContent(null);
+        list.setDisable(true);
+        currentSearchWord = "";
+    }
+    @FXML
+    public void clear(MouseEvent event) {
+        refreshSearcher();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -57,31 +76,39 @@ public class SearchController implements Initializable{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        Platform.runLater(() -> searchBar.requestFocus());
-        searchBar.setOnKeyTyped(new EventHandler<KeyEvent>() {
+
+        if (isWordInBookmarkFile(currentSearchWord)) {
+            isMarkedBtn.setVisible(true);
+            toMarkBtn.setVisible(false);
+        } else {
+            isMarkedBtn.setVisible(false);
+            toMarkBtn.setVisible(true);
+        }
+
+        searchBar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(KeyEvent keyEvent) {
-                if (searchBar.getText().isEmpty()) {
-                    autoCom.clear();
-                } else {
-                    autoCom.clear();
-                    String searchWord = searchBar.getText().trim();
-                    autoCom = autoComplete(searchWord);
-                    if (autoCom.isEmpty()) {
-                        list.setDisable(true);
-                    } else {
-                        list.setDisable(false);
-                        list.setItems(autoCom);
-                    }
-                }
+            public void handle(MouseEvent event) {
+                if (searchBar.getText().equals("Nhập từ"))
+                    searchBar.setText("");
+            }
+        });
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue)-> {
+            clearBtn.setVisible(true);
+            autoCom.clear();
+            String searchWord = newValue;
+            autoCom = autoComplete(searchWord);
+            if (autoCom.isEmpty()) {
+                list.setDisable(true);
+            } else {
+                list.setDisable(false);
+                list.setItems(autoCom);
             }
         });
     }
 
     public ObservableList<String> autoComplete (String word) {
-
         ObservableList<String> obL = FXCollections.observableArrayList();
-
         try {
             ArrayList<String> results = Trie.advancedSearch(word);
             if (results != null) {
@@ -115,100 +142,61 @@ public class SearchController implements Initializable{
             alert.show();
             return;
         }
-
-        EditController.setEditingWord(currentSearchWord);
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Edit.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Stage newStage = new Stage();
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.initOwner(stage);
-            newStage.setTitle("EditWordDefinition");
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        definitionSite.setVisible(false);
+        editSite.setText(definition);
+        editSite.setVisible(true);
+        saveEditBtn.setVisible(true);
+        cancelEditBtn.setVisible(true);
     }
 
     @FXML
-    void exitButton(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    void saveTheDefinition(MouseEvent event) {
+        String newDefinition = editSite.getText();
+        if (DatabaseDictionary.updateWordDefinition(currentSearchWord, newDefinition)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("");
+            alert.setContentText(currentSearchWord + " is successfully updated");
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("");
+            alert.setContentText(currentSearchWord + " is failed to update");
+            alert.show();
+        }
+        show(editSite.getText());
+        definitionSite.setVisible(true);
+        editSite.setVisible(false);
+        saveEditBtn.setVisible(false);
+        cancelEditBtn.setVisible(false);
     }
 
     @FXML
-    void favouriteButton(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Bookmark" +
-                    ".fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Stage newStage = new Stage();
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.initOwner(stage);
-            newStage.setResizable(false);
-            newStage.setTitle("Add new word");
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void ggTranslateButton(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/TranslateUI.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Translator");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void quizButton(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/game/fxml/HomeGameUI.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Let's play a game!");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void cancelTheDefinition() {
 
     }
+
     public void searchWord() {
         String searchWord = searchBar.getText();
         currentSearchWord = searchWord;
         definition = DatabaseDictionary.lookUpWord(currentSearchWord);
-        if (definition.equals("No words were found")) {
-            definitionSite.setText("No word can be found");
-            definitionSite.setVisible(true);
+        if (isWordInBookmarkFile(currentSearchWord)) {
+            isMarkedBtn.setVisible(true);
+            toMarkBtn.setVisible(false);
         } else {
-            definitionSite.setText(definition);
+            isMarkedBtn.setVisible(false);
+            toMarkBtn.setVisible(true);
+        }
+        if (definition.equals("No words were found")) {
+            definitionSite.setContent(new Label("No word can be found"));
             definitionSite.setVisible(true);
+            notFound.setVisible(true);
+        } else {
+            show(definition);
+            definitionSite.setVisible(true);
+            notFound.setVisible(false);
         }
     }
 
-    /**
-     * Functions of the search button.
-     */
-    @FXML
-    void searchButton(MouseEvent event) {
-        searchWord();
-    }
 
     @FXML
     void searchBarKey(KeyEvent event) {
@@ -230,15 +218,10 @@ public class SearchController implements Initializable{
      */
     @FXML
     void listMouseClicked(MouseEvent event) {
-        if (event.getClickCount() == 1) {
-            String searchedWord = list.getSelectionModel().getSelectedItem();
-            searchBar.setText(searchedWord);
-        }
-        if (event.getClickCount() >= 2) {
-            String searchedWord = list.getSelectionModel().getSelectedItem();
-            searchBar.setText(searchedWord);
-            searchWord();
-        }
+        String searchedWord = list.getSelectionModel().getSelectedItem();
+        searchBar.setText(searchedWord);
+        searchWord();
+        selectedWord.setText(searchedWord);
     }
 
     @FXML
@@ -250,6 +233,7 @@ public class SearchController implements Initializable{
             String searchedWord = list.getSelectionModel().getSelectedItem();
             searchBar.setText(searchedWord);
             searchWord();
+            selectedWord.setText(searchedWord);
         } else if (event.getCode() == KeyCode.UP && list.getSelectionModel().getSelectedIndex() == 0) {
             searchBar.requestFocus();
         }
@@ -283,7 +267,7 @@ public class SearchController implements Initializable{
             if (option.isPresent()) {
                 if (option.get() == ButtonType.OK) {
                     if (DatabaseDictionary.deleteWord(currentSearchWord)) {
-                        Trie.deleteWord(currentSearchWord);
+                        refreshSearcher();
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Info");
                         alert1.setContentText(currentSearchWord + "deleted successfully");
@@ -300,30 +284,11 @@ public class SearchController implements Initializable{
         }
     }
 
-    @FXML
-    void addWordButton(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AddWordUI.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Stage newStage = new Stage();
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.initOwner(stage);
-            newStage.setResizable(false);
-            newStage.setTitle("Add new word");
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private boolean isWordInBookmarkFile(String word) {
         try (BufferedReader reader = new BufferedReader(new FileReader("Bookmark.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains(word)) {
+                if (line.equals(word)) {
                     return true;
                 }
             }
@@ -337,13 +302,14 @@ public class SearchController implements Initializable{
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Bookmark.txt", true))) {
             writer.write(word);
             writer.newLine();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void saveButton(MouseEvent event) {
+    void markAWord(MouseEvent event) {
         if (currentSearchWord.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -352,6 +318,8 @@ public class SearchController implements Initializable{
             return;
         }
         if (!isWordInBookmarkFile(currentSearchWord)) {
+            toMarkBtn.setVisible(false);
+            isMarkedBtn.setVisible(true);
             exportToBookmarkFile(currentSearchWord);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -359,6 +327,50 @@ public class SearchController implements Initializable{
             alert.setContentText("The word has been already saved");
             alert.show();
         }
+    }
+
+    @FXML
+    void unmarkAWord(MouseEvent event) {
+
+    }
+
+    public void show(String wordExplain) {
+        VBox vbox = new VBox(5);
+        String[] s = wordExplain.split("\n", -1);
+        definition = "";
+        Font font1 = Font.font("Arial", FontWeight.MEDIUM, 16);
+        Font font2 = Font.font("Arial", FontWeight.BOLD,16);
+        Font font3 = Font.font("Arial", 14);
+        for (int i = 0; i < s.length; i++) {
+            s[i] = s[i].trim();
+            if (s[i].startsWith("@")) {
+                definition = definition + s[i] + "\n";
+                String tmp = s[i];
+                Text text = new Text(tmp);
+                text.setFont(font1);
+                vbox.getChildren().add(text);
+            } else if (s[i].startsWith("*")) {
+                definition = definition + "  " + s[i] + "\n";
+                String tmp = "  " + s[i] ;
+                Text text = new Text(tmp);
+                text.setFont(font2);
+                vbox.getChildren().add(text);
+            } else if (s[i].startsWith("-")) {
+                definition = definition + "     " + s[i] + "\n";
+                String tmp = "     " + s[i];
+                Text text = new Text(tmp);
+                text.setFont(font3);
+                vbox.getChildren().add(text);
+            } else {
+                definition = definition + " " + s[i] + "\n";
+                String tmp = " " + s[i];
+                Text text = new Text(tmp);
+                text.setFont(font3);
+                vbox.getChildren().add(text);
+            }
+        }
+        definitionSite.setContent(vbox);
+        notFound.setVisible(false);
     }
 }
 

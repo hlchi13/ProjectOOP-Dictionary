@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NavigationController">
+   <children>
+      <AnchorPane fx:id="container" layoutX="62.0" prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@../style.css" />
+      <Button fx:id="mainDict" layoutX="8.0" layoutY="62.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-search-40.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="saveList" layoutX="5.0" layoutY="239.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="52.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-favorite-folder-40.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="gameBtn" layoutX="5.0" layoutY="299.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="52.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-game-40.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="exitBtn" layoutX="5.0" layoutY="408.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="52.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-log-out-40.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="translateBtn" layoutX="8.0" layoutY="123.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-translation-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="5.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#addWordButton" prefHeight="46.0" prefWidth="52.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons/icons8-add-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
