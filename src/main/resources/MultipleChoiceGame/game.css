@@ -1,0 +1,50 @@
+
+@font-face {
+    src: url("/MultipleChoiceGame/font/Itim-Regular.ttf");
+}
+
+.root {
+    -fx-background-color: #a8cff0;
+}
+.home {
+    -fx-font-size: 40px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+
+.game-menu {
+    -fx-background-radius: 20px;
+    -fx-background-color: #6b9bd1;
+    -fx-font-size: 32px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+
+.choice-btn {
+    -fx-background-radius: 20px;
+    -fx-background-color: #6b9bd1;
+    -fx-font-size: 20px;
+    -fx-text-fill: #fff;
+    -fx-font-family: "Itim";
+}
+
+.choice-btn:hover {
+    -fx-border-color: #2f3c7e;
+    -fx-padding: 10px;
+}
+
+.choice-btn.next-btn:hover,
+.game-menu:hover {
+    -fx-background-color: #2f3c7e;
+    -fx-text-fill: #fbeaeb;
+}
+
+.question {
+    -fx-border-color: transparent;
+    -fx-background-color: #6b9bd1;
+    -fx-background-radius: 20px;
+    -fx-font-size: 24px;
+    -fx-text-fill: #2f3c7e;
+    -fx-font-family: "Itim";
+}
+

@@ -16,13 +16,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static Dictionary.Speech.speakInEn;
+
 public class BookmarkController implements Initializable {
     private String currentSelectedWord = "";
     @FXML
-    private Label Label1;
-
-    @FXML
-    private Label Label2;
+    private Label target;
 
     @FXML
     private ListView<String> list;
@@ -40,7 +39,7 @@ public class BookmarkController implements Initializable {
         try (BufferedReader reader = new BufferedReader(new FileReader("Bookmark.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                    savedWords.add(line);
+                savedWords.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,34 +57,28 @@ public class BookmarkController implements Initializable {
     }
 
     private void delete(String word) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("Bookmark.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("Bookmark_temp.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.contains(word)) {
-                    writer.write(line + System.lineSeparator());
-                }
+        List<String> newWords = getSavedWords();
+        newWords.remove(word);
+        try {
+            FileWriter fileWriter = new FileWriter("Bookmark.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (String w : newWords) {
+                bufferedWriter.write(w);
+                bufferedWriter.newLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        File tempFile = new File("Bookmark_temp.txt");
-        File originalFile = new File("Bookmark.txt");
-
-        if (tempFile.renameTo(originalFile)) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Successful");
-            alert.setContentText(word + " has been successfully deleted from the bookmark");
-            alert.show();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Failed to delete " + word);
-            alert.show();
+            bufferedWriter.close();
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e);
         }
     }
+
+    @FXML
+    void speakEnButton(MouseEvent event) {
+        if (!currentSelectedWord.isEmpty()) {
+            speakInEn(currentSelectedWord);
+        }
+    }
+
     @FXML
     void deleteTheWord(MouseEvent event) {
         String selectedWord = list.getSelectionModel().getSelectedItem();
@@ -111,18 +104,18 @@ public class BookmarkController implements Initializable {
             String searchedWord = list.getSelectionModel().getSelectedItem();
             currentSelectedWord = searchedWord;
             search();
+            target.setText(searchedWord);
         }
     }
 
     @FXML
     void clickTheWord(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
-            String searchedWord = list.getSelectionModel().getSelectedItem();
-            currentSelectedWord = searchedWord;
-            search();
-        }
+        String searchedWord = list.getSelectionModel().getSelectedItem();
+        currentSelectedWord = searchedWord;
+        search();
+        target.setText(searchedWord);
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         prepareList();

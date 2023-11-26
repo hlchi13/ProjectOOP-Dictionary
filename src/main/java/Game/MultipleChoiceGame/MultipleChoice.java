@@ -1,19 +1,24 @@
-package MultipleChoiceGame;
+package Game.MultipleChoiceGame;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import Game.MultipleChoiceGame.Question;
 
 public class MultipleChoice {
     private List<Question> questions;
     private String title;
     private List<String> choices;
     private String correct;
+    private boolean isRunning;
 
-    public MultipleChoice() {}
+    public MediaPlayer player = new MediaPlayer(new Media(new File("src/main/resources/MultipleChoiceGame/sound/gameBg.mp3").toURI().toString()));
+    public MultipleChoice() {
+        this.isRunning = true;
+    }
     public MultipleChoice(List<Question> questions) {
         this.questions = questions;
     }
@@ -22,7 +27,7 @@ public class MultipleChoice {
         return questions;
     }
 
-    public void getFromFile() {
+    public List<Question> getFromFile() {
         questions = new ArrayList<>();
         try {
             FileReader fileReader = new FileReader("src/main/resources/MultipleChoiceGame/questions.txt");
@@ -45,6 +50,7 @@ public class MultipleChoice {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return questions;
     }
 
     public static void main(String[] args) {

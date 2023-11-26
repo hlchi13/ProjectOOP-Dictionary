@@ -1,47 +1,77 @@
-.search-box {
-    -fx-background-color:#FFFFFF;
-    -fx-background-radius: 100;
+.root {
+    -fx-background-color: #2f3c7f;
+}
+
+.dictionary-btn {
+    -fx-border-radius: 12px;
+    -fx-background-color: transparent;
+}
+
+.dictionary-btn:selected, .dictionary-btn:hover {
+    -fx-background-color: #ccc;
+}
+
+.background {
+    -fx-background-color: #dceff4;
+}
+
+.pane {
+    -fx-background-color: #6b9bd1;
+    -fx-background-radius: 16;
+}
+.search-field {
+    -fx-background-color: #6b9bd1;
+    -fx-background-radius: 20;
+}
+
+.search-bar {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFF;
 }
 
 .transparent {
     -fx-background-color: rgba(0, 0, 0, 0);
 }
-
-.search-box-search-button {
-    -fx-background-color: #828282;
-    -fx-background-radius: 100;
-}
-
-.left-bar {
-    -fx-background-color: #1e81b0;
-}
-
-.shadow {
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,1), 10.0, 0.0, 0.0, 10.0);
-}
-
 .list-view {
-    -fx-background-radius: 25;
+    -fx-font-size: 16px;
 }
 
-.top-bar-about-setting-button {
-    -fx-background-radius: 50;
-    -fx-background-color: #a8cff0;
+.list-cell:odd {
+    -fx-background-color: #dceff4;
 }
 
-.top-bar-button {
-    -fx-background-radius: 25;
-    -fx-background-color: #a8cff0;
+.list-cell:focused {
+    -fx-background-color: #6b9bd1;
+    -fx-text-fill: #fff;
 }
 
-.middle-bar {
-    -fx-background-color: #bdc9c9;
+.translate-field {
+    -fx-text-fill: #6b9bd1;
+    -fx-border-color: #6b9bd1;
+    -fx-font-size: 18px;
+    -fx-border-width: 1.5;
+}
+
+.header-translate {
+    -fx-border-color: #6b9bd1;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 7 7 0 0;
+    -fx-border-radius: 7 7 0 0;
+}
+
+.trans-btn {
+    -fx-background-color: #6b9bd1;
+    -fx-text-fill: #2f3c7f;
+}
+.trans-btn:hover {
+    -fx-background-color: #ccc;
 }
 
 .translate-bar {
-    -fx-font-family: "Itim";
+    -fx-background-color: #fff;
+    -fx-border-width: 1.5;
+    -fx-border-color: #6b9bd1;
 }
-
 .show-explain {
     -fx-font-size: 24px;
     -fx-border-radius: 50px;
@@ -67,9 +97,8 @@
     src: url("/MultipleChoiceGame/font/Itim-Regular.ttf");
 }
 
-.root {
-    -fx-background-color: #a8cff0;
-}
+
+
 .home {
     -fx-font-size: 40px;
     -fx-text-fill: #2f3c7e;
@@ -112,6 +141,4 @@
     -fx-font-family: "Itim";
 }
 
-.list-cell{
-    -fx-font-size: 18.0;
-}
+

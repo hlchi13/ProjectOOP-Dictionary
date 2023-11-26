@@ -16,8 +16,8 @@ public class Trie {
         }
     }
 
-    private static final TrieNode root = new TrieNode();
-    private static final ArrayList<String> searchedWords = new ArrayList<>();
+    private static TrieNode root = new TrieNode();
+    private static ArrayList<String> searchedWords = new ArrayList<>();
 
     public static ArrayList<String> getSearchedWords() {
         return searchedWords;
@@ -66,7 +66,7 @@ public class Trie {
             System.out.println("There is no such word in dtb");
             return;
         }
-        root.endOfWord = false;
+        current.endOfWord = false;
     }
 
     public static ArrayList<String> advancedSearch(String prefix) {

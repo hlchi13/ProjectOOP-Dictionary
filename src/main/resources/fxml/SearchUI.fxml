@@ -1,310 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SearchController">
    <children>
-      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <VBox prefHeight="550.0" prefWidth="325.0" styleClass="left-bar" BorderPane.alignment="CENTER">
+      <Pane layoutX="248.0" layoutY="118.0" prefHeight="375.0" prefWidth="438.0" styleClass="pane" stylesheets="@../style.css">
+         <children>
+            <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 12;">
                <children>
-                  <HBox prefHeight="55.0" prefWidth="326.0">
-                     <children>
-                        <Pane prefHeight="75.0" prefWidth="12.5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets top="5.0" />
-                           </HBox.margin>
+                  <Label fx:id="selectedWord" layoutX="14.0" layoutY="8.0" prefHeight="40.0" prefWidth="177.0" text="Target">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/book-img.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" text="CQD DICTIONARY" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" top="15.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="35.0" prefWidth="306.0" stylesheets="@../style.css">
-                     <children>
-                        <TextField fx:id="searchBar" onKeyPressed="#searchBarKey" prefHeight="35.0" prefWidth="241.0" styleClass="transparent" stylesheets="@../style.css" text="Search English or Vietnamese">
-                           <font>
-                              <Font name="SansSerif Bold" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="searchBtn" mnemonicParsing="false" onMouseClicked="#searchButton" prefHeight="35.0" prefWidth="50.0" styleClass="search-box-search-button" stylesheets="@../style.css" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="20.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.5" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/search-icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" top="10.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="search-box" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                  </HBox>
-                  <VBox prefHeight="425.0" prefWidth="326.0" stylesheets="@../style.css">
-                     <children>
-                        <ListView fx:id="list" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="375.0" prefWidth="294.0" stylesheets="@../style.css">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
-                           </VBox.margin>
-                           <styleClass>
-                              <String fx:value="transparent" />
-                              <String fx:value="list-cell" />
-                           </styleClass>
-                        </ListView>
-                     </children>
-                     <styleClass>
-                        <String fx:value="list-view" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" top="25.0" />
-                     </VBox.margin>
-                  </VBox>
+                     </graphic>
+                  </Label>
+                  <Button layoutX="372.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#deleteButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons/icons8-trash-can-40.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="234.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#speakENButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons/icons8-audio-40.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="toMarkBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#markAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons/icons8-add-to-favorites-40.png" />
+                           </image></ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="280.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#editButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons/icons8-edit-40.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="isMarkedBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#unmarkAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons/icons8-star-filled-40.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
-            </VBox>
-         </left>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="left-bar" stylesheets="@../style.css" BorderPane.alignment="CENTER">
+            </Pane>
+            <TextArea fx:id="editSite" layoutX="8.0" layoutY="65.0" prefHeight="300.0" prefWidth="423.0" visible="false" />
+            <Button fx:id="saveEditBtn" layoutX="375.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#saveTheDefinition" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" visible="false">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/icons8-ok-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cancelEditBtn" layoutX="319.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#cancelTheDefinition" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" visible="false">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/icons8-cancel-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ScrollPane fx:id="definitionSite" layoutX="8.0" layoutY="65.0" prefHeight="300.0" prefWidth="423.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="17.0" layoutY="118.0" prefHeight="375.0" prefWidth="221.0" styleClass="pane" stylesheets="@../style.css">
+         <children>
+            <ListView fx:id="list" layoutX="7.0" layoutY="10.0" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="356.0" prefWidth="207.0" style="-fx-background-radius: 12; -fx-background-color: #fff; -fx-border-radius: 12;" />
+         </children>
+      </Pane>
+      <Pane prefHeight="113.0" prefWidth="706.0">
+         <children>
+            <Pane layoutX="201.0" layoutY="34.0" prefHeight="40.0" prefWidth="305.0" styleClass="search-field" stylesheets="@../style.css">
                <children>
-                  <HBox prefHeight="60.0" prefWidth="574.0" styleClass="left-bar" stylesheets="@../style.css">
-                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#ggTranslateButton" prefHeight="35.0" prefWidth="175.0" stylesheets="@../style.css" text="Google Translate" textAlignment="RIGHT" textFill="#100808">
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="SansSerif Bold" size="15.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/translate.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="top-bar-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                        </Button>
-                        <Pane prefHeight="58.0" prefWidth="15.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#addWordButton" prefHeight="35.0" prefWidth="100.0" stylesheets="@../style.css" text="Add Word" textFill="#100808">
-                           <styleClass>
-                              <String fx:value="top-bar-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                           <font>
-                              <Font name="SansSerif Bold" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Pane prefHeight="58.0" prefWidth="15.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#quizButton" prefHeight="35.0" prefWidth="75.0" stylesheets="@../style.css" text="QUIZ!" textFill="#5000ff">
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="SansSerif Bold" size="18.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="top-bar-about-setting-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                        </Button>
-                        <Pane prefHeight="58.0" prefWidth="20.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#favouriteButton" prefHeight="42.0" prefWidth="42.0" stylesheets="@../style.css" textAlignment="RIGHT" textFill="#100808">
-                           <font>
-                              <Font name="SansSerif Bold" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="7.5" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="top-bar-about-setting-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/heart.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="75.0" prefWidth="12.5" />
-                        <Button mnemonicParsing="false" onMouseClicked="#settingButton" prefHeight="42.0" prefWidth="42.0" stylesheets="@../style.css">
-                           <HBox.margin>
-                              <Insets top="7.5" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/setting.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="top-bar-about-setting-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                        </Button>
-                        <Pane prefHeight="75.0" prefWidth="12.5" />
-                        <Button mnemonicParsing="false" onMouseClicked="#exitButton" prefHeight="42.0" prefWidth="42.0" stylesheets="@../style.css">
-                           <HBox.margin>
-                              <Insets top="7.5" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="top-bar-about-setting-button" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/exit-button.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="538.0" stylesheets="@../style.css">
-                     <children>
-                        <Button fx:id="speakerUSButton" mnemonicParsing="false" onMouseClicked="#speakENButton" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/Speaker.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Label prefHeight="50.0" prefWidth="28.0" text="EN">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="SansSerif Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="48.0" prefWidth="300.0" />
-                        <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#deleteButton" prefHeight="50.0" styleClass="transparent" stylesheets="@../style.css">
-                           <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#editButton" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../style.css" textFill="#100808">
-                           <font>
-                              <Font name="SansSerif Bold" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="49.0" prefWidth="5.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#saveButton" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/save-button.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <styleClass>
-                        <String fx:value="middle-bar" />
-                        <String fx:value="list-view" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                     <VBox.margin>
-                        <Insets right="17.5" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="12.5" right="12.5" />
-                     </padding>
-                  </HBox>
-                  <HBox prefHeight="445.0" prefWidth="574.0">
-                     <children>
-                        <VBox prefHeight="420.0" prefWidth="555.0" stylesheets="@../style.css">
-                           <HBox.margin>
-                              <Insets bottom="17.5" top="17.5" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="list-view" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                           <children>
-                              <TextArea fx:id="definitionSite" editable="false" prefHeight="360.0" prefWidth="555.0" styleClass="definition-area" stylesheets="@../style.css" visible="false">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="SansSerif Regular" size="18.0" />
-                                 </font>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
+                  <TextField fx:id="searchBar" layoutX="37.0" layoutY="1.0" onKeyPressed="#searchBarKey" opacity="0.95" prefHeight="40.0" prefWidth="221.0" styleClass="search-bar" stylesheets="@../style.css" text="Nhập từ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/search-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="clearBtn" layoutX="257.0" layoutY="1.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="40.0" prefWidth="21.0" styleClass="transparent" stylesheets="@../style.css">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/clear.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="clear" />
+                     </tooltip>
+                  </Button>
                </children>
-            </VBox>
-         </center>
-      </BorderPane>
+            </Pane>
+            <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/book-img.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="74.0" layoutY="28.0" prefHeight="52.0" prefWidth="109.0" text="Dictionary" textFill="#2f3c7e">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="notFound" layoutX="292.0" layoutY="74.0" prefHeight="40.0" prefWidth="123.0" text="Not found" textFill="#2f3c7e" visible="false">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/x.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

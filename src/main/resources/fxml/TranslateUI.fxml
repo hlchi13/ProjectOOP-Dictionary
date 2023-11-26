@@ -6,55 +6,87 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TranslateController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TranslateController">
    <children>
-      <TextArea fx:id="textFrom" layoutX="42.0" layoutY="111.0" onKeyReleased="#translateWord" prefHeight="271.0" prefWidth="263.0" wrapText="true">
+      <Pane layoutX="350.0" layoutY="164.0" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #fff;" styleClass="translate-bar">
+         <children>
+            <Button fx:id="speakToTrans" layoutX="6.0" layoutY="2.0" mnemonicParsing="false" styleClass="dictionary-btn" stylesheets="@../style.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/icons8-audio-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="38.0" layoutY="164.0" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #fff;" styleClass="translate-bar">
+         <children>
+            <Button fx:id="speakTarget" layoutX="7.0" layoutY="2.0" mnemonicParsing="false" styleClass="dictionary-btn" stylesheets="@../style.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/icons8-audio-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="speakTarget1" layoutX="53.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#clear" styleClass="dictionary-btn" stylesheets="@../style.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                     <image>
+                        <Image url="@../img/icons/icons8-erase-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="38.0" layoutY="95.0" prefHeight="69.0" prefWidth="623.0" styleClass="header-translate">
+         <children>
+            <Button fx:id="changeBtn" layoutX="282.0" layoutY="11.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="60.0" styleClass="dictionary-btn">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons/icons8-change-40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="labelFrom" alignment="CENTER" layoutY="10.0" prefHeight="50.0" prefWidth="247.0" text="From" textFill="#2f3c7f">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTo" alignment="CENTER" layoutX="370.0" layoutY="10.0" prefHeight="50.0" prefWidth="247.0" text="To" textFill="#2f3c7f">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="transBtn" layoutX="253.0" layoutY="432.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="193.0" styleClass="trans-btn" text="Translate" textFill="#2f3c7f">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Button>
+      <TextArea fx:id="textFrom" layoutX="38.0" layoutY="204.0" onKeyReleased="#translateWord" prefHeight="221.0" prefWidth="312.0" styleClass="translate-field" wrapText="true">
          <font>
             <Font size="16.0" />
-         </font></TextArea>
-      <TextArea fx:id="textTo" editable="false" layoutX="342.0" layoutY="111.0" prefHeight="271.0" prefWidth="263.0" wrapText="true">
+         </font>
+      </TextArea>
+      <TextArea fx:id="textTo" editable="false" layoutX="350.0" layoutY="204.0" onKeyReleased="#translateWord" prefHeight="221.0" prefWidth="312.0" styleClass="translate-field" wrapText="true">
          <font>
             <Font size="16.0" />
-         </font></TextArea>
-      <Button fx:id="changeBtn" layoutX="283.0" layoutY="51.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="83.0" text="Change" />
-      <Button fx:id="transBtn" layoutX="259.0" layoutY="393.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="132.0" text="Translate" />
-      <Button fx:id="exitBtn" layoutX="572.0" layoutY="7.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="65.0" text="exit" />
-      <Label fx:id="labelFrom" alignment="CENTER" layoutX="42.0" layoutY="48.0" prefHeight="50.0" prefWidth="263.0" text="From">
+         </font>
+      </TextArea>
+      <Label alignment="CENTER" layoutY="-5.0" prefHeight="89.0" prefWidth="700.0" text="Translate" textFill="#2f3c7f">
          <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font></Label>
-      <Label fx:id="labelTo" alignment="CENTER" layoutX="342.0" layoutY="48.0" prefHeight="50.0" prefWidth="263.0" text="To">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font></Label>
-      <Button fx:id="speakTarget" layoutX="49.0" layoutY="337.0" mnemonicParsing="false" styleClass="speaker" stylesheets="@../style.css">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/speaker.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="speakToTrans" layoutX="355.0" layoutY="337.0" mnemonicParsing="false" styleClass="speaker" stylesheets="@../style.css">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/speaker.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="speakTarget1" layoutX="95.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#clear" styleClass="speaker" stylesheets="@../style.css">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/delete.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

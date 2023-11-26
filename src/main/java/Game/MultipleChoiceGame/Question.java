@@ -1,4 +1,4 @@
-package MultipleChoiceGame;
+package Game.MultipleChoiceGame;
 
 import java.util.List;
 

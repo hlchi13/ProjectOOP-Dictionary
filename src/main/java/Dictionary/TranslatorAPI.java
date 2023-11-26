@@ -1,8 +1,7 @@
 package Dictionary;
 
+import javafx.scene.control.Alert;
 import javazoom.jl.player.Player;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,9 +50,11 @@ public class TranslatorAPI {
             urlConn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-    public static void main(String[] args) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Vượt quá số kí tự có thể dịch được");
 
+            alert.showAndWait();
+        }
     }
 }

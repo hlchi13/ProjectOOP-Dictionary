@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 public class TranslateController implements Initializable {
     @FXML
-    private Button transBtn, changeBtn, exitBtn;
+    private Button transBtn, changeBtn;
     @FXML
     private Button speakTarget, speakToTrans;
     @FXML
@@ -57,11 +57,6 @@ public class TranslateController implements Initializable {
                 lFrom = "en";
                 lTo = "vi";
             }
-        });
-
-        exitBtn.setOnAction(event -> {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
         });
         speakTarget.setOnAction(event -> {
             if (!textFrom.getText().isEmpty()) {
