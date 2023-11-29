@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainDictionary.AddController">
    <children>
-      <Label alignment="CENTER" layoutX="-1.0" layoutY="8.0" prefHeight="91.0" prefWidth="797.0" text="Add Word" textFill="#2f3c7e">
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="8.0" prefHeight="91.0" prefWidth="700.0" text="Add Word" textFill="#2f3c7e">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
@@ -42,25 +42,30 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons/icons8-ok-40.png" />
+                        <Image url="@../icons/icons8-ok-40.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="cancel" layoutX="276.0" layoutY="342.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="52.0" styleClass="dictionary-btn">
+            <Button fx:id="cancel" layoutX="276.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#cancelAddWord" prefHeight="43.0" prefWidth="52.0" styleClass="dictionary-btn">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons/icons8-cancel-40.png" />
+                        <Image url="@../icons/icons8-cancel-40.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </Pane>
-      <ImageView fitHeight="220.0" fitWidth="308.0" layoutX="522.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="190.0" fitWidth="192.0" layoutX="507.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/icons/add.jpg" />
+            <Image url="@../img/gif3.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="190.0" layoutX="507.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/gif2.gif" />
          </image>
       </ImageView>
    </children>

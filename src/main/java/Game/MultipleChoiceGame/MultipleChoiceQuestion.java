@@ -1,34 +1,26 @@
 package Game.MultipleChoiceGame;
 
+import Game.Question;
+
 import java.util.List;
 
-public class Question {
-    private String title;
+public class MultipleChoiceQuestion extends Question {
     private List<String> choices;
-    private String correctAns;
 
-    public Question() {}
+    public MultipleChoiceQuestion() {}
 
-    public Question(Question question) {
+    public MultipleChoiceQuestion(MultipleChoiceQuestion question) {
         this.title = question.title;
         this.choices = question.getChoices();
         this.correctAns = question.correctAns;
     }
-    public Question(String title, List<String> choices, String correctAns) {
+    public MultipleChoiceQuestion(String title, List<String> choices, String correctAns) {
         this.title = title;
         this.choices = choices;
         this.correctAns = correctAns;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public List<String> getChoices() {
         return choices;
-    }
-
-    public String getCorrectAns() {
-        return correctAns;
     }
 }

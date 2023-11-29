@@ -1,4 +1,4 @@
-package Controller;
+package Controller.MainDictionary;
 
 import Dictionary.DatabaseDictionary;
 import javafx.fxml.FXML;
@@ -41,8 +41,21 @@ public class AddController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("");
-            alert.setContentText(newWord + " đã có trong từ điển");
+            alert.setContentText(newWord + " had already been in the dictionary");
             alert.show();
+        }
+    }
+
+    @FXML
+    void cancelAddWord() {
+        if (newWordTarget.getText().isEmpty() && newWordMeaning.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Empty");
+            alert.showAndWait();
+        } else {
+            newWordTarget.clear();
+            newWordMeaning.clear();
         }
     }
 }

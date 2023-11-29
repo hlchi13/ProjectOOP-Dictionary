@@ -13,24 +13,30 @@
       <Button fx:id="op1" layoutX="83.0" layoutY="236.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="217.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
       <Button fx:id="op3" layoutX="83.0" layoutY="340.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="217.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
       <Button fx:id="op4" layoutX="413.0" layoutY="336.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="217.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
-      <Button fx:id="nextBtn" layoutX="508.0" layoutY="435.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="154.0" stylesheets="@../../style.css" text="Next Question">
+      <Button fx:id="nextBtn" layoutX="508.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#onClickedNextButton" prefHeight="45.0" prefWidth="154.0" stylesheets="@../../style.css" text="Next Question">
          <styleClass>
             <String fx:value="next-btn" />
             <String fx:value="choice-btn" />
          </styleClass></Button>
-      <Label fx:id="correctCnt" alignment="CENTER" layoutX="340.0" layoutY="16.0" prefHeight="45.0" prefWidth="182.0" styleClass="question" stylesheets="@../game.css" text="Correct" />
+      <Label fx:id="correctCnt" alignment="CENTER" layoutX="351.0" layoutY="16.0" prefHeight="45.0" prefWidth="171.0" styleClass="question" stylesheets="@../game.css" text="Correct" />
       <Label fx:id="questionId" alignment="CENTER" layoutX="14.0" layoutY="62.0" prefHeight="53.0" prefWidth="171.0" styleClass="question" stylesheets="@../game.css" text="Question Id" />
-      <Label fx:id="score" alignment="CENTER" layoutX="529.0" layoutY="16.0" prefHeight="45.0" prefWidth="145.0" styleClass="question" stylesheets="@../game.css" text="Correct" />
-      <ImageView fx:id="wrong" fitHeight="150.0" fitWidth="154.0" layoutX="279.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Label fx:id="score" alignment="CENTER" layoutX="529.0" layoutY="16.0" prefHeight="45.0" prefWidth="145.0" styleClass="question" stylesheets="@../game.css" text="Score" />
+      <ImageView fx:id="wrong" fitHeight="150.0" fitWidth="154.0" layoutX="279.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/x.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="correct" fitHeight="150.0" fitWidth="154.0" layoutX="279.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="correct" fitHeight="150.0" fitWidth="154.0" layoutX="279.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/v.png" />
          </image>
       </ImageView>
       <Label fx:id="questionTitle" layoutY="126.0" prefHeight="77.0" prefWidth="695.0" styleClass="question" stylesheets="@../game.css" text="question" wrapText="true" />
+      <Label fx:id="time" alignment="CENTER" layoutX="168.0" layoutY="16.0" prefHeight="45.0" prefWidth="171.0" styleClass="question" stylesheets="@../game.css" text="time" />
+      <ImageView fx:id="bg" fitHeight="500.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/bg.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

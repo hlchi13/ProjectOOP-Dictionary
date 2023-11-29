@@ -50,10 +50,9 @@ public class TranslatorAPI {
             urlConn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Vượt quá số kí tự có thể dịch được");
-
+            alert.setHeaderText("Exceeding the number of characters can be pronounced");
             alert.showAndWait();
         }
     }

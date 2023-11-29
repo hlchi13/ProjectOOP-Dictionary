@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainDictionary.SearchController">
    <children>
-      <Pane layoutX="248.0" layoutY="118.0" prefHeight="375.0" prefWidth="438.0" styleClass="pane" stylesheets="@../style.css">
+      <Pane layoutX="248.0" layoutY="118.0" prefHeight="375.0" prefWidth="438.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
             <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 12;">
                <children>
@@ -26,7 +26,7 @@
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/book-img.png" />
+                              <Image url="@../icons/book-img.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -35,42 +35,42 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/icons/icons8-trash-can-40.png" />
+                              <Image url="@../icons/icons8-trash-can-40.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="234.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#speakENButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                  <Button layoutX="234.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#speakENButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../../style.css">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/icons/icons8-audio-40.png" />
+                              <Image url="@../icons/icons8-audio-40.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="toMarkBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#markAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                  <Button fx:id="toMarkBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#markAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../../style.css">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/icons/icons8-add-to-favorites-40.png" />
+                              <Image url="@../icons/icons8-add-to-favorites-40.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="280.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#editButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                  <Button layoutX="280.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#editButton" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../../style.css">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/icons/icons8-edit-40.png" />
+                              <Image url="@../icons/icons8-edit-40.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="isMarkedBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#unmarkAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../style.css">
+                  <Button fx:id="isMarkedBtn" layoutX="326.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#unmarkAWord" prefHeight="40.0" prefWidth="46.0" styleClass="dictionary-btn" stylesheets="@../../style.css">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/icons/icons8-star-filled-40.png" />
+                              <Image url="@../icons/icons8-star-filled-40.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -82,7 +82,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons/icons8-ok-40.png" />
+                        <Image url="@../icons/icons8-ok-40.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -91,7 +91,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons/icons8-cancel-40.png" />
+                        <Image url="@../icons/icons8-cancel-40.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -99,30 +99,30 @@
             <ScrollPane fx:id="definitionSite" layoutX="8.0" layoutY="65.0" prefHeight="300.0" prefWidth="423.0" />
          </children>
       </Pane>
-      <Pane layoutX="17.0" layoutY="118.0" prefHeight="375.0" prefWidth="221.0" styleClass="pane" stylesheets="@../style.css">
+      <Pane layoutX="17.0" layoutY="118.0" prefHeight="375.0" prefWidth="221.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
-            <ListView fx:id="list" layoutX="7.0" layoutY="10.0" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="356.0" prefWidth="207.0" style="-fx-background-radius: 12; -fx-background-color: #fff; -fx-border-radius: 12;" />
+            <ListView fx:id="list" layoutX="11.0" layoutY="9.0" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="357.0" prefWidth="200.0" style="-fx-background-radius: 12; -fx-border-radius: 12;" />
          </children>
       </Pane>
-      <Pane prefHeight="113.0" prefWidth="706.0">
+      <Pane prefHeight="111.0" prefWidth="706.0">
          <children>
-            <Pane layoutX="201.0" layoutY="34.0" prefHeight="40.0" prefWidth="305.0" styleClass="search-field" stylesheets="@../style.css">
+            <Pane layoutX="201.0" layoutY="34.0" prefHeight="40.0" prefWidth="305.0" styleClass="search-field" stylesheets="@../../style.css">
                <children>
-                  <TextField fx:id="searchBar" layoutX="37.0" layoutY="1.0" onKeyPressed="#searchBarKey" opacity="0.95" prefHeight="40.0" prefWidth="221.0" styleClass="search-bar" stylesheets="@../style.css" text="Nhập từ">
+                  <TextField fx:id="searchBar" layoutX="37.0" layoutY="1.0" onKeyPressed="#searchBarKey" opacity="0.95" prefHeight="40.0" prefWidth="221.0" styleClass="search-bar" stylesheets="@../../style.css" text="Enter A Word">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
                   <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/search-icon.png" />
+                        <Image url="@../icons/search-icon.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="clearBtn" layoutX="257.0" layoutY="1.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="40.0" prefWidth="21.0" styleClass="transparent" stylesheets="@../style.css">
+                  <Button fx:id="clearBtn" layoutX="257.0" layoutY="1.0" mnemonicParsing="false" onMouseClicked="#clear" opacity="0.75" prefHeight="40.0" prefWidth="21.0" styleClass="transparent" stylesheets="@../../style.css" visible="false">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/clear.png" />
+                              <Image url="@../icons/clear.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -132,21 +132,16 @@
                   </Button>
                </children>
             </Pane>
-            <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="111.0" fitWidth="108.0" layoutX="37.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/book-img.png" />
+                  <Image url="@../img/gif1.gif" />
                </image>
             </ImageView>
-            <Label layoutX="74.0" layoutY="28.0" prefHeight="52.0" prefWidth="109.0" text="Dictionary" textFill="#2f3c7e">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
             <Label fx:id="notFound" layoutX="292.0" layoutY="74.0" prefHeight="40.0" prefWidth="123.0" text="Not found" textFill="#2f3c7e" visible="false">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons/x.png" />
+                        <Image url="@../icons/x.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -154,6 +149,11 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
+            <ImageView fitHeight="118.0" fitWidth="123.0" layoutX="550.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/gif5.gif" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

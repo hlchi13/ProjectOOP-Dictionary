@@ -1,21 +1,24 @@
 package Controller.Game;
 
 import Controller.NavigationController;
-import Game.MultipleChoiceGame.GameManagement;
+import Game.GameTime;
 import Game.MultipleChoiceGame.MultipleChoice;
+import Game.MultipleChoiceGame.MultipleChoiceQuestion;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import Game.MultipleChoiceGame.Question;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,14 +27,32 @@ import java.util.*;
 import java.util.List;
 
 public class QuizController implements Initializable {
-    private GameManagement game = new GameManagement();
-    private List<Question> questionList = new ArrayList<>();
+    private MultipleChoice game = new MultipleChoice();
+    private List<MultipleChoiceQuestion> questionList = new ArrayList<>();
     private static final int NUM_OF_QUESTIONS = 5;
     private static int counter = 0;
     private static int countCorrect = 0;
     private static int countWrong = 0;
     private static int scoreInt = 0;
-
+    private GameTime gameTime;
+    @FXML
+    private Button op1, op2, op3, op4, nextBtn;
+    @FXML
+    private Label questionTitle;
+    @FXML
+    private Label score;
+    @FXML
+    private Label correctCnt, questionId, time;
+    private File file;
+    private Media sound;
+    private MediaPlayer mediaPlayer;
+    @FXML
+    private AnchorPane result;
+    @FXML
+    private ImageView wrong ,correct, bg;
+    private AnimationTimer loop;
+    private Timeline timeline;
+    private int timeInSeconds = 5;
     public static int getCountCorrect() {
         return countCorrect;
     }
@@ -43,22 +64,6 @@ public class QuizController implements Initializable {
     public static int getScoreInt() {
         return scoreInt;
     }
-    @FXML
-    private Button exitBtn, op1, op2, op3, op4, nextBtn;
-    @FXML
-    private Label questionTitle;
-    @FXML
-    private Label score;
-    @FXML
-    private Label correctCnt, questionId;
-    private File file;
-    private Media sound;
-    private MediaPlayer mediaPlayer;
-
-    @FXML
-    private AnchorPane result;
-    @FXML
-    private ImageView wrong ,correct;
 
     private void refresh() {
         counter = 0;
@@ -66,10 +71,12 @@ public class QuizController implements Initializable {
         countWrong = 0;
         scoreInt = 0;
         setQuiz();
+        gameTime = new GameTime(30);
     }
 
     public void setQuiz() {
-        questionList = game.getQuestionsList();
+
+        questionList = game.getFromFile();
         Collections.shuffle(questionList);
     }
 
@@ -80,24 +87,20 @@ public class QuizController implements Initializable {
         mouseAction(counter);
         score.setText("Score: " + scoreInt);
         correctCnt.setText("Correct: " + countCorrect + "/" + NUM_OF_QUESTIONS);
-        questionId.setText("Question: " + counter + 1);
+        questionId.setText("Question: " + (counter + 1));
         counter++;
-            nextBtn.setOnAction(event -> {
-                if (counter < NUM_OF_QUESTIONS) {
-                    counter++;
-                    setNewQuestion(counter);
-                    mouseAction(counter);
-                    questionId.setText("Question: " + counter);
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                timeInSeconds--;
+                if (timeInSeconds >= 0) {
+                    time.setText(timeInSeconds + " seconds");
                 } else {
-                        try {
-                            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/MultipleChoiceGame/fxml/Result.fxml")));
-                            result.getChildren().clear();
-                            result.getChildren().add(component);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-            });
+                    timeline.stop();
+                    // You can add your game-over logic here
+                }
+            }
+        }));
     }
 
     public void setNewQuestion(int idx) {
@@ -158,5 +161,24 @@ public class QuizController implements Initializable {
         op4.setOnAction(event -> {
             showCorrectAns(idx, op4, op1, op2, op3);
         });
+    }
+
+    @FXML
+    void onClickedNextButton() {
+        if (counter < NUM_OF_QUESTIONS) {
+            counter++;
+            setNewQuestion(counter);
+            mouseAction(counter);
+            questionId.setText("Question: " + counter);
+        } else {
+            game.stopMusic();
+            try {
+                AnchorPane component = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/MultipleChoiceGame/fxml/Result.fxml")));
+                result.getChildren().clear();
+                result.getChildren().add(component);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

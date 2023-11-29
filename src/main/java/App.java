@@ -10,7 +10,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                .getResource("/fxml/NavigationBar.fxml"));
+                .getResource("/Dictionary/fxml/NavigationBar.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());

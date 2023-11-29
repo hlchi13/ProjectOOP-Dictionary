@@ -4,13 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,17 +18,16 @@ public class NavigationController implements Initializable {
     @FXML
     private AnchorPane container;
     @FXML
-    private Button mainDict, saveList, gameBtn, exitBtn, translateBtn;
+    private Button mainDict, bookmarkList, gameBtn, exitBtn, translateBtn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        mainDict.setOnAction(event -> showComponent("/fxml/SearchUI.fxml"));
-
-        saveList.setOnMouseClicked(mouseEvent -> showComponent("/fxml/Bookmark.fxml"));
+        mainDict.setOnAction(event -> showComponent("/Dictionary/fxml/SearchUI.fxml"));
+        bookmarkList.setOnMouseClicked(mouseEvent -> showComponent("/Dictionary/fxml/Bookmark.fxml"));
         gameBtn.setOnMouseClicked(mouseEvent -> showComponent("/MultipleChoiceGame/fxml/HomeGameUI.fxml"));
-        translateBtn.setOnAction(e -> showComponent("/fxml/TranslateUI.fxml"));
+        translateBtn.setOnAction(e -> showComponent("/Dictionary/fxml/TranslateUI.fxml"));
         try {
-            showComponent("/fxml/SearchUI.fxml");
+            showComponent("/Dictionary/fxml/SearchUI.fxml");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -42,7 +37,7 @@ public class NavigationController implements Initializable {
 
     @FXML
     void addWordButton(MouseEvent event) {
-        showComponent("/fxml/AddWord.fxml");
+        showComponent("/Dictionary/fxml/AddWord.fxml");
     }
 
     public void setNode(Node node) {

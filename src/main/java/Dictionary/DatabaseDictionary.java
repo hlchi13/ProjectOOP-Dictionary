@@ -56,7 +56,6 @@ public class DatabaseDictionary {
 
     /**
      * Convert HTML to text keeping linebreaks
-     *
      * @param html text
      * @return text
      * Ref: https://stackoverflow.com/questions/2513707/how-to-convert-html-to-text-keeping-linebreaks
@@ -97,7 +96,7 @@ public class DatabaseDictionary {
     /**
      * Get all the data from the databasae.
      */
-    private static ArrayList<String> getAllWords() {
+    public static ArrayList<String> getAllWords() {
         final String SQL_QUERY = "SELECT * FROM tbl_edict";
         try {
             PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
@@ -147,33 +146,6 @@ public class DatabaseDictionary {
                 try {
                     if (rs.next()) {
                         String explain = htmlToText(rs.getString("detail"));
-                        return explain;
-                    } else {
-                        return "No words were found";
-                    }
-                } finally {
-                    close(rs);
-                }
-            } finally {
-                close(ps);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return "No words were found";
-    }
-
-    public static String lookUpWordEditWindow(final String target) {
-        final String SQL_QUERY = "SELECT detail FROM tbl_edict WHERE word = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-            ps.setString(1, target);
-            try {
-
-                ResultSet rs = ps.executeQuery();
-                try {
-                    if (rs.next()) {
-                        String explain = rs.getString("detail");
                         return explain;
                     } else {
                         return "No words were found";

@@ -6,28 +6,32 @@ import javafx.scene.media.MediaPlayer;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import Game.MultipleChoiceGame.Question;
 
 public class MultipleChoice {
-    private List<Question> questions;
+    private List<MultipleChoiceQuestion> questions;
     private String title;
     private List<String> choices;
     private String correct;
     private boolean isRunning;
 
-    public MediaPlayer player = new MediaPlayer(new Media(new File("src/main/resources/MultipleChoiceGame/sound/gameBg.mp3").toURI().toString()));
+    public MediaPlayer playerBg = new MediaPlayer(new Media(new File("src/main/resources/MultipleChoiceGame/sound/gameBg.mp3").toURI().toString()));
     public MultipleChoice() {
         this.isRunning = true;
+        playerBg.play();
     }
-    public MultipleChoice(List<Question> questions) {
+
+    public MultipleChoice(List<MultipleChoiceQuestion> questions) {
         this.questions = questions;
     }
 
-    public List<Question> getQuestions() {
+    public void stopMusic() {
+        playerBg.stop();
+    }
+    public List<MultipleChoiceQuestion> getQuestions() {
         return questions;
     }
 
-    public List<Question> getFromFile() {
+    public List<MultipleChoiceQuestion> getFromFile() {
         questions = new ArrayList<>();
         try {
             FileReader fileReader = new FileReader("src/main/resources/MultipleChoiceGame/questions.txt");
@@ -42,7 +46,7 @@ public class MultipleChoice {
                 choices.add(quiz[3]);
                 choices.add(quiz[4]);
                 correct = quiz[5];
-                Question question = new Question(title, choices, correct);
+                MultipleChoiceQuestion question = new MultipleChoiceQuestion(title, choices, correct);
                 questions.add(question);
             }
         } catch (FileNotFoundException e) {
@@ -53,14 +57,4 @@ public class MultipleChoice {
         return questions;
     }
 
-    public static void main(String[] args) {
-        MultipleChoice game = new MultipleChoice();
-        game.getFromFile();
-        List<Question> questionList = game.questions;
-
-        for (Question s: questionList) {
-//            System.out.println(s.getTitle());
-            System.out.println(s.getChoices());
-        }
-    }
 }

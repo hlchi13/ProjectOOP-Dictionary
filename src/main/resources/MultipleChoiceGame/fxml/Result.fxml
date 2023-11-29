@@ -28,7 +28,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/icons/icons8-restart-40.png" />
+                  <Image url="@../../Dictionary/icons/icons8-restart-40.png" />
                </image>
             </ImageView>
          </graphic>
