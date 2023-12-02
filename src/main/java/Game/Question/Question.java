@@ -1,12 +1,11 @@
-package Game;
+package Game.Question;
 
-public class Question {
+public abstract class Question {
     protected String title;
     protected String correctAns;
 
     public Question() {
-        this.title = "";
-        this.correctAns = "";
+        
     }
 
     public Question(String title, String answer) {
@@ -29,4 +28,12 @@ public class Question {
     public String getCorrectAns() {
         return correctAns;
     }
+
+    public boolean isTrue(String answer) {
+        if (answer.equals(correctAns)) {
+            return true;
+        }
+        return false;
+    }
+
 }
