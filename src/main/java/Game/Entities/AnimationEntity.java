@@ -37,14 +37,6 @@ public class AnimationEntity extends Entity {
         this.direction = direction;
     }
 
-//    public boolean isMoving() {
-//        return isMoving;
-//    }
-//
-//    public void setMoving(boolean moving) {
-//        isMoving = moving;
-//    }
-
     protected void animate() {
         if (animate < MAX_ANIMATE) animate++;
         else animate = 0;

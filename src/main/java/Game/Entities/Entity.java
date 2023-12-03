@@ -20,7 +20,7 @@ public abstract class Entity {
 
     public Entity(int xUnit, int yUnit, Image img, int size) {
         this.x = xUnit * size;
-        this.y = yUnit* size;
+        this.y = yUnit * size;
         this.img = img;
     }
 

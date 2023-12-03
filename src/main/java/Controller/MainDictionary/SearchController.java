@@ -61,11 +61,6 @@ public class SearchController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            DatabaseDictionary.initialize();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
         if (isWordInBookmarkFile(currentSearchWord)) {
             isMarkedBtn.setVisible(true);

@@ -1,6 +1,7 @@
 package Controller.MainDictionary;
 
 import Dictionary.TranslatorAPI;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -59,6 +60,24 @@ public class TranslateController implements Initializable {
             translateArea.setText(sourceArea.getText());
             sourceArea.setText(tmp);
         });
+
+        sourceArea.textProperty().addListener((observable, oldValue, newValue)-> {
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.submit(()->{
+                try {
+                    String translation = TranslatorAPI.translate(lFrom, lTo, newValue);
+                    translateArea.setText(translation);
+                } catch (IOException e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Translator API:");
+                    alert.setContentText("Exceeding the number of characters can be translated");
+                    alert.showAndWait();
+                    e.printStackTrace();
+                }
+            });
+            executorService.shutdown();
+        });
     }
 
     @FXML
@@ -88,31 +107,12 @@ public class TranslateController implements Initializable {
     private void speaking(TextArea area, String language) {
         if (!area.getText().isEmpty()) {
             TranslatorAPI.playGoogleSound(area.getText(), language);
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Empty");
+            alert.setHeaderText(null);
+            alert.setContentText("Empty");
             alert.showAndWait();
         }
-    }
-
-    @FXML
-    public void translateWord() {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.submit(()->{
-            try {
-                String translation = TranslatorAPI.translate(lFrom, lTo, sourceArea.getText());
-                translateArea.setText(translation);
-            } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Information");
-                alert.setHeaderText("Translator API:");
-                alert.setContentText("Exceeding the number of characters can be translated");
-                alert.showAndWait();
-                e.printStackTrace();
-            }
-        });
-        executorService.shutdown();
     }
 }

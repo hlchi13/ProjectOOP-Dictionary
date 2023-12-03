@@ -15,7 +15,7 @@
    <children>
       <Pane layoutX="248.0" layoutY="118.0" prefHeight="375.0" prefWidth="438.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
-            <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 12;">
+            <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 4;">
                <children>
                   <Label fx:id="target" layoutX="14.0" layoutY="8.0" prefHeight="40.0" prefWidth="177.0" text="Target">
                      <font>
@@ -54,8 +54,8 @@
       </Pane>
       <Pane layoutX="17.0" layoutY="118.0" prefHeight="375.0" prefWidth="221.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
-            <ListView fx:id="list" layoutX="7.0" layoutY="65.0" onKeyPressed="#enterTheWord" onMouseClicked="#clickTheWord" prefHeight="300.0" prefWidth="207.0" style="-fx-background-radius: 12; -fx-border-radius: 12;" />
-            <Pane layoutX="11.0" layoutY="7.0" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-background-radius: 12;">
+            <ListView fx:id="list" layoutX="11.0" layoutY="68.0" onKeyPressed="#enterTheWord" onMouseClicked="#clickTheWord" prefHeight="300.0" prefWidth="200.0" />
+            <Pane layoutX="11.0" layoutY="7.0" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-background-radius: 4;">
                <children>
                   <Label layoutX="40.0" layoutY="11.0" text="List Words">
                      <font>
@@ -87,7 +87,7 @@
             </Label>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="444.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/icons/icons8-bookmark-40%20(1).png" />
+                  <Image url="@../icons/icons8-bookmark-40%20(1).png" />
                </image>
             </ImageView>
             <ImageView fitHeight="120.0" fitWidth="139.0" layoutX="552.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">

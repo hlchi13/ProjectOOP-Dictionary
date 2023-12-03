@@ -46,7 +46,7 @@ public class GameTime {
                         long minutes = TimeUnit.SECONDS.toMinutes(secondsLeft);
                         long seconds = secondsLeft - minutes * 60;
                         Platform.runLater(() -> {
-                            timerLabel.setText(String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+                            timerLabel.setText("Time left: " + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
                         });
                         secondsLeft--;
 

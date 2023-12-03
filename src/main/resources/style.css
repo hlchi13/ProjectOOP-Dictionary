@@ -10,6 +10,8 @@
 
 .dictionary-btn:hover{
     -fx-background-color: #ccc;
+    -fx-scale-x:1.15;
+    -fx-scale-y:1.15;
 }
 
 .background {
@@ -18,13 +20,17 @@
 
 .pane {
     -fx-background-color: #6b9bd1;
-    -fx-background-radius: 16;
+    -fx-background-radius: 12;
 }
 .search-field {
     -fx-background-color: #6b9bd1;
     -fx-background-radius: 20;
 }
 
+.scroll-pane > .viewport  {
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+; }
 .search-bar {
     -fx-background-color: transparent;
     -fx-text-fill: #FFF;
@@ -34,11 +40,15 @@
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
+.list-view{
+    -fx-background-radius: 4px;
+}
+
 .list-cell{
     -fx-text-fill: #000;
     -fx-font-size: 16;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
 }
 .list-cell:even{
     -fx-background-color: #f5f6fa;
@@ -86,17 +96,11 @@
 }
 
 
-.definition-area{
-    -fx-background-color: #fff, #fff;
-}
-
-.definition-area .content {
-    -fx-background-color: #fff;
-}
-
-.definition-area:focused .content {
-    -fx-background-color: #fff;
-    -fx-border-color: black;
+.header-add {
+    -fx-border-color: #6b9bd1;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 7 7 0 0;
+    -fx-border-radius: 7 7 0 0;
 }
 
 

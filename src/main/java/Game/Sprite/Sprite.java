@@ -9,8 +9,7 @@ import javafx.scene.image.WritableImage;
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
  */
 public class Sprite {
-    public static final int DEFAULT_SIZE = 50;
-    private static final int TRANSPARENT_COLOR = 0xffffff;
+    public static final int DEFAULT_SIZE = 40;
     public final int SIZE;
     private int x, y;
     public int[] pixels;
@@ -37,6 +36,7 @@ public class Sprite {
     public static Sprite wall = new Sprite(DEFAULT_SIZE, 1, 2, SpriteSheet.tiles);
     public static Sprite correct_mark = new Sprite(DEFAULT_SIZE, 1, 1, SpriteSheet.tiles);
     public static Sprite question_mark = new Sprite(DEFAULT_SIZE, 0, 1, SpriteSheet.tiles);
+    public static Sprite crown = new Sprite(DEFAULT_SIZE, 0, 3, SpriteSheet.tiles);
 
     public static Sprite cat1 = new Sprite(DEFAULT_SIZE, 0, 0, SpriteSheet.tiles);
     public static Sprite cat2 = new Sprite(DEFAULT_SIZE, 1, 0, SpriteSheet.tiles);
@@ -56,11 +56,7 @@ public class Sprite {
         PixelWriter pw = wr.getPixelWriter();
         for (int x = 0; x < SIZE; x++) {
             for (int y = 0; y < SIZE; y++) {
-                if (pixels[x + y * SIZE] == TRANSPARENT_COLOR) {
-                    pw.setArgb(x, y, 0);
-                } else {
-                    pw.setArgb(x, y, pixels[x + y * SIZE]);
-                }
+                pw.setArgb(x, y, pixels[x + y * SIZE]);
             }
         }
         Image input = new ImageView(wr).getImage();

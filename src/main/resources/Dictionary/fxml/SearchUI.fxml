@@ -17,7 +17,7 @@
    <children>
       <Pane layoutX="248.0" layoutY="118.0" prefHeight="375.0" prefWidth="438.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
-            <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 12;">
+            <Pane layoutX="8.0" layoutY="8.0" prefHeight="52.0" prefWidth="423.0" style="-fx-background-color: #fff; -fx-background-radius: 4;">
                <children>
                   <Label fx:id="selectedWord" layoutX="14.0" layoutY="8.0" prefHeight="40.0" prefWidth="177.0" text="Target">
                      <font>
@@ -96,12 +96,21 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ScrollPane fx:id="definitionSite" layoutX="8.0" layoutY="65.0" prefHeight="300.0" prefWidth="423.0" />
+            <ScrollPane fx:id="definitionSite" layoutX="8.0" layoutY="65.0" prefHeight="300.0" prefWidth="423.0" stylesheets="@../../style.css" />
          </children>
       </Pane>
       <Pane layoutX="17.0" layoutY="118.0" prefHeight="375.0" prefWidth="221.0" styleClass="pane" stylesheets="@../../style.css">
          <children>
-            <ListView fx:id="list" layoutX="11.0" layoutY="9.0" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="357.0" prefWidth="200.0" style="-fx-background-radius: 12; -fx-border-radius: 12;" />
+            <ListView fx:id="list" layoutX="11.0" layoutY="66.0" onKeyPressed="#listKeyPressed" onMouseClicked="#listMouseClicked" prefHeight="300.0" prefWidth="200.0" style="-fx-background-radius: 4;" />
+            <Pane layoutX="11.0" layoutY="7.0" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-background-radius: 4;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="List Words ">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane prefHeight="111.0" prefWidth="706.0">

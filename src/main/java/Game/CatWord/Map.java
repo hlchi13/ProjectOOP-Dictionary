@@ -15,12 +15,14 @@ public class Map {
     public static List<List<Entity>> map;
     protected int[][] itemList;
     public static final int HEIGHT = 8;
-    public static int WIDTH = 8;
+    public static final int WIDTH = 8;
     private Cat cat;
+    private Crown crown;
 
     public Map() {
         map = new ArrayList<>();
         cat = new Cat(0, 0, Sprite.cat1.getFxImage());
+        crown = new Crown(7, 7, Sprite.crown.getFxImage());
         itemList = new int[HEIGHT][WIDTH];
         try {
             String fileName = "./src/main/resources/Game/map.txt";
@@ -37,9 +39,6 @@ public class Map {
                                 break;
                             case '?':
                                 list.add(new QuestionMark(j, i, Sprite.question_mark.getFxImage()));
-                                break;
-                            case '+':
-                                list.add(new CorrectMark(j, i, Sprite.correct_mark.getFxImage()));
                                 break;
                             case '.':
                                 list.add(new Grass(j, i, Sprite.grass.getFxImage()));
@@ -77,5 +76,6 @@ public class Map {
             }
         }
         cat.render(gc);
+        crown.render(gc);
     }
 }

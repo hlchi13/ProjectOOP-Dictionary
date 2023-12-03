@@ -1,5 +1,7 @@
 package Controller;
 
+import Controller.Game.CatWordController;
+import Dictionary.DatabaseDictionary;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -21,11 +24,29 @@ public class NavigationController implements Initializable {
     private Button mainDict, bookmarkList, gameBtn, exitBtn, translateBtn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            DatabaseDictionary.initialize();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        mainDict.setOnAction(event -> showComponent("/Dictionary/fxml/SearchUI.fxml"));
-        bookmarkList.setOnMouseClicked(mouseEvent -> showComponent("/Dictionary/fxml/Bookmark.fxml"));
-        gameBtn.setOnMouseClicked(mouseEvent -> showComponent("/MultipleChoiceGame/fxml/HomeGameUI.fxml"));
-        translateBtn.setOnAction(e -> showComponent("/Dictionary/fxml/TranslateUI.fxml"));
+        mainDict.setOnAction(event ->{
+            CatWordController.setEnd();
+            showComponent("/Dictionary/fxml/SearchUI.fxml");
+
+        });
+        bookmarkList.setOnMouseClicked(mouseEvent -> {
+            CatWordController.setEnd();
+            showComponent("/Dictionary/fxml/Bookmark.fxml");
+        });
+        gameBtn.setOnMouseClicked(mouseEvent -> {
+            CatWordController.setEnd();
+            showComponent("/Game/fxml/HomeGameUI.fxml");
+        });
+        translateBtn.setOnAction(e -> {
+            CatWordController.setEnd();
+            showComponent("/Dictionary/fxml/TranslateUI.fxml");}
+        );
         try {
             showComponent("/Dictionary/fxml/SearchUI.fxml");
         } catch (Exception e) {
@@ -37,6 +58,7 @@ public class NavigationController implements Initializable {
 
     @FXML
     void addWordButton(MouseEvent event) {
+        CatWordController.setEnd();
         showComponent("/Dictionary/fxml/AddWord.fxml");
     }
 

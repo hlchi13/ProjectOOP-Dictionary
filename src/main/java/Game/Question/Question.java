@@ -5,7 +5,7 @@ public abstract class Question {
     protected String correctAns;
 
     public Question() {
-        
+
     }
 
     public Question(String title, String answer) {
