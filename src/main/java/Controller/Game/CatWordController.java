@@ -21,7 +21,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -32,10 +35,14 @@ public class CatWordController implements Initializable {
     public static CatWord game;
     private QuestionList quiz = new QuestionList();
     private List<Question> questionList = quiz.getQuestionList();
-    private int count, score;
+    private int count;
     private GraphicsContext gc;
     private AnimationTimer gameLoop;
     private int cntWrong = 0;
+    private Media wrong_sound = new Media(
+            new File("./src/main/resources/Game/sound/wrong.mp3").toURI().toString());
+    private Media correct_sound = new Media(
+            new File("./src/main/resources/Game/sound/correct.mp3").toURI().toString());
     @FXML
     private AnchorPane root, rootGame,
             questionField, lose, win, playAgainField;
@@ -44,9 +51,7 @@ public class CatWordController implements Initializable {
     @FXML
     private Button op1, op2, op3, op4, submit;
     @FXML
-    private Label timerLabel, question, playAgainLabel;
-    @FXML
-    private Button yesBtn, noBtn;
+    private Label timerLabel, question;
     public static GameTime time;
 
 
@@ -54,9 +59,8 @@ public class CatWordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         questionField.setVisible(false);
         count = 0;
-        score = 0;
         game = new CatWord();
-        time = new GameTime(timerLabel, 30);
+        time = new GameTime(timerLabel, 45);
         quiz.init();
         Collections.shuffle(questionList);
         Canvas canvas = new Canvas(320, 320);
@@ -166,11 +170,14 @@ public class CatWordController implements Initializable {
             System.out.println(questionList.get(count).getCorrectAns());
             if (questionList.get(count).getCorrectAns().equals(answer)) {
                 game.getMap().updateMap(x, y, new CorrectMark(x, y, Sprite.correct_mark.getFxImage()));
-                score += 10;
+                MediaPlayer correct = new MediaPlayer(correct_sound);
+                correct.play();
             } else {
                 game.getMap().updateMap(x, y, new Wall(x, y, Sprite.wall.getFxImage()));
                 cat.back();
                 cntWrong++;
+                MediaPlayer wrong = new MediaPlayer(wrong_sound);
+                wrong.play();
             }
         }
         count++;
@@ -189,7 +196,8 @@ public class CatWordController implements Initializable {
             if (questionList.get(count).isTrue(answer)) {
                 game.getMap().updateMap(x, y, new CorrectMark(x, y, Sprite.correct_mark.getFxImage()));
                 question.setText(questionList.get(count).getTitle().replace('_', answer.charAt(0)));
-                score += 10;
+                MediaPlayer correct = new MediaPlayer(correct_sound);
+                correct.play();
             } else {
                 game.getMap().updateMap(x, y, new Wall(x, y, Sprite.wall.getFxImage()));
                 cat.back();
@@ -197,6 +205,8 @@ public class CatWordController implements Initializable {
                 ans = "Correct answer: " + ans.replace('_', questionList.get(count).getCorrectAns().charAt(0));
                 question.setText(ans);
                 cntWrong++;
+                MediaPlayer wrong = new MediaPlayer(wrong_sound);
+                wrong.play();
             }
             count++;
             answerField.clear();
@@ -216,11 +226,10 @@ public class CatWordController implements Initializable {
         win.setVisible(false);
         count = 0;
         cntWrong = 0;
-        score = 0;
         questionField.setVisible(false);
         answerField.clear();
         game = new CatWord();
-        time = new GameTime(timerLabel, 30);
+        time = new GameTime(timerLabel, 45);
         Collections.shuffle(questionList);
         gameLoop.start();
         time.run();
