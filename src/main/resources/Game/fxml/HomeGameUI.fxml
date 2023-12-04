@@ -19,6 +19,7 @@
             <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Button fx:id="playBtn" layoutX="253.0" layoutY="219.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="193.0" styleClass="menu-btn" stylesheets="@../game.css" text="Cat Word" />
+      <Button fx:id="catWordBtn" layoutX="253.0" layoutY="219.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="193.0" styleClass="menu-btn" stylesheets="@../game.css" text="Cat Word" />
+      <Button fx:id="memoryBtn" layoutX="253.0" layoutY="329.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="193.0" styleClass="menu-btn" stylesheets="@../game.css" text="Memory" />
    </children>
 </AnchorPane>

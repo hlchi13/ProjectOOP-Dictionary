@@ -7,9 +7,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Map {
     public static List<List<Entity>> map;
@@ -78,4 +76,5 @@ public class Map {
         cat.render(gc);
         crown.render(gc);
     }
+
 }

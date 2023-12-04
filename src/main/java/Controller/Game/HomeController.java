@@ -16,13 +16,18 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane container;
     @FXML
-    private Button playBtn;
+    private Button catWordBtn, memoryBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        playBtn.setOnAction(event -> {
+        catWordBtn.setOnAction(event -> {
             container.setVisible(true);
             showComponent("/Game/fxml/CatWord.fxml");
+        });
+
+        memoryBtn.setOnAction(event -> {
+            container.setVisible(true);
+            showComponent("/Game/fxml/Memory.fxml");
         });
     }
 

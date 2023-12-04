@@ -23,10 +23,10 @@
                            </font>
                         </TextField>
                         <Button fx:id="submit" layoutX="111.0" layoutY="157.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="36.0" prefWidth="77.0" styleClass="choice-btn" stylesheets="@../game.css" text="Submit" />
-                        <Button fx:id="op3" layoutY="186.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
-                        <Button fx:id="op2" layoutX="189.0" layoutY="114.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
-                        <Button fx:id="op1" layoutY="113.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
-                        <Button fx:id="op4" layoutX="189.0" layoutY="185.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
+                        <Button fx:id="op3" layoutY="186.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
+                        <Button fx:id="op2" layoutX="178.0" layoutY="114.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
+                        <Button fx:id="op1" layoutY="113.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="121.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
+                        <Button fx:id="op4" layoutX="178.0" layoutY="185.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="121.0" styleClass="choice-btn" stylesheets="@../game.css" text="Button" />
                         <Label fx:id="question" layoutY="10.0" prefHeight="78.0" prefWidth="300.0" styleClass="question" stylesheets="@../game.css" text="Label" wrapText="true" />
                      </children>
                   </AnchorPane>
@@ -43,9 +43,9 @@
                </children>
             </Pane>
             <AnchorPane fx:id="rootGame" layoutX="358.0" layoutY="73.0" prefHeight="320.0" prefWidth="320.0" />
-            <Label fx:id="timerLabel" layoutX="24.0" layoutY="14.0" prefHeight="50.0" prefWidth="140.0" styleClass="game-label" stylesheets="@../game.css" text="time" textAlignment="CENTER">
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="24.0" layoutY="14.0" prefHeight="50.0" prefWidth="140.0" styleClass="game-label" stylesheets="@../game.css" text="time" textAlignment="CENTER">
                <font>
-                  <Font name="Droid Sans Mono Dotted" size="16.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
             <ImageView fitHeight="65.0" fitWidth="68.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
@@ -53,6 +53,7 @@
                   <Image url="@../img/Kawaii%20Ghost%20Sprite%20Neko%20Edition%20-%20Default.png" />
                </image>
             </ImageView>
+            <Button fx:id="exitBtn" layoutX="556.0" layoutY="14.0" mnemonicParsing="false" onAction="#onExit" prefHeight="50.0" prefWidth="121.0" styleClass="menu-btn" stylesheets="@../game.css" text="Back" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="lose" prefHeight="500.0" prefWidth="741.0" style="-fx-background-color: #dceff4;" visible="false">

@@ -94,33 +94,17 @@ public class CatWordController implements Initializable {
         }
         if (cat.getxUnit() == 7 && cat.getyUnit() == 7) {
             gameLoop.stop();
+            time.setEnd(true);
             game.setRunning(false);
             win.setVisible(true);
             playAgainField.setVisible(true);
-
         }
-        if (cntWrong == 2 || time.isEnd()) {
+        if (time.isEnd()) {
             gameLoop.stop();
             time.setEnd(true);
             game.setRunning(false);
             playAgainField.setVisible(true);
             lose.setVisible(true);
-        }
-    }
-
-    @FXML
-    public void onPlayAgain() {
-        refresh();
-    }
-
-    @FXML
-    public void onExit() {
-        try {
-            AnchorPane component = FXMLLoader.load(getClass().getResource("/Game/fxml/HomeGameUI.fxml"));
-            root.getChildren().clear();
-            root.getChildren().add(component);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -233,6 +217,23 @@ public class CatWordController implements Initializable {
         Collections.shuffle(questionList);
         gameLoop.start();
         time.run();
+    }
+
+    @FXML
+    public void onPlayAgain() {
+        refresh();
+    }
+
+    @FXML
+    public void onExit() {
+        game.setRunning(false);
+        try {
+            AnchorPane component = FXMLLoader.load(getClass().getResource("/Game/fxml/HomeGameUI.fxml"));
+            root.getChildren().clear();
+            root.getChildren().add(component);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void setEnd() {

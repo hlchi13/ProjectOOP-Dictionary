@@ -14,7 +14,8 @@ public class CatWord {
     public CatWord() {
         isRunning = true;
         map = new Map();
-        bg_music = new MediaPlayer(new Media(new File("./src/main/resources/Game/sound/gameBg.mp3").toURI().toString()));
+        bg_music = new MediaPlayer(new Media
+                (new File("./src/main/resources/Game/sound/gameBg.mp3").toURI().toString()));
     }
 
     public void update(KeyEvent event) {

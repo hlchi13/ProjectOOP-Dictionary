@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Game.MemoryController">
+    <children>
+        <Button fx:id="button0" layoutX="54.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button1" layoutX="203.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button2" layoutX="350.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button3" layoutX="502.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button4" layoutX="54.0" layoutY="223.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button5" layoutX="203.0" layoutY="223.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button6" layoutX="350.0" layoutY="223.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button7" layoutX="502.0" layoutY="223.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button8" layoutX="54.0" layoutY="329.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button10" layoutX="350.0" layoutY="329.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button9" layoutX="203.0" layoutY="329.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="button11" layoutX="502.0" layoutY="329.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="90.0" prefWidth="126.0" styleClass="memory-btn" stylesheets="@../game.css" wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="exitButton" layoutX="532.0" layoutY="28.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="43.0" prefWidth="126.0" styleClass="menu-btn" stylesheets="@../game.css" text="Back">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+      <Label fx:id="timerLabel" layoutX="41.0" layoutY="28.0" prefHeight="43.0" prefWidth="162.0" styleClass="game-label" stylesheets="@../game.css">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="win" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #dceff4;" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutX="222.0" layoutY="96.0" prefHeight="43.0" prefWidth="242.0" text="Win">
+               <font>
+                  <Font name="System Bold" size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="lose" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #dceff4;" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutX="229.0" layoutY="91.0" prefHeight="43.0" prefWidth="242.0" text="Lose">
+               <font>
+                  <Font name="System Bold" size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="playAgainField" layoutX="177.0" layoutY="168.0" prefHeight="200.0" prefWidth="345.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutX="47.0" layoutY="22.0" prefHeight="43.0" prefWidth="251.0" text="Play Again?">
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="24.0" layoutY="100.0" mnemonicParsing="false" onAction="#onPlayAgain" prefHeight="51.0" prefWidth="126.0" styleClass="menu-btn" stylesheets="@../game.css" text="Yes" />
+            <Button layoutX="205.0" layoutY="100.0" mnemonicParsing="false" onAction="#onExitMemoryGame" prefHeight="51.0" prefWidth="126.0" styleClass="menu-btn" stylesheets="@../game.css" text="No" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
