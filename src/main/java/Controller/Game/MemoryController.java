@@ -52,11 +52,12 @@ public class MemoryController implements Initializable {
     @FXML private Button button10;
     @FXML private Button button11;
     @FXML
-    private Label timerLabel;
+    private Label timerLabel, turnLabel, loseReason;
     @FXML private AnchorPane container, lose, win, playAgainField;
     GameTime time;
     private AnimationTimer gameLoop;
     private static int cnt = 0;
+    private static int turn = 25;
     private boolean firstButtonClicked = false;
 
     private int firstButtonIndex;
@@ -72,10 +73,9 @@ public class MemoryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         player = new MediaPlayer(gameBg);
         player.play();
-        time = new GameTime(timerLabel, 45);
+        time = new GameTime(timerLabel, 30);
         memoryGame = new Memory();
         memoryGame.setupGame();
-
         buttons.addAll(Arrays.asList(
                 button0, button1, button2, button3,
                 button4, button5, button6, button7,
@@ -84,6 +84,7 @@ public class MemoryController implements Initializable {
         gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                turnLabel.setText("Turn left: " + turn);
                 gameState();
             }
         };
@@ -93,6 +94,7 @@ public class MemoryController implements Initializable {
 
     @FXML
     void buttonClicked(ActionEvent event) {
+        turn--;
         MediaPlayer playCorrect = new MediaPlayer(correct);
         MediaPlayer playWrong = new MediaPlayer(wrong);
         MediaPlayer playerClick = new MediaPlayer(click);
@@ -104,11 +106,9 @@ public class MemoryController implements Initializable {
             }
             match = false;
             firstButtonClicked = true;
-
             //Get clicked button memory letter
             String buttonId = ((Control)event.getSource()).getId();
             firstButtonIndex = Integer.parseInt(buttonId.substring(6));  // Extract the entire index substring
-
             //Change clicked button text
             buttons.get(firstButtonIndex).setText(memoryGame.getOptionAtIndex(firstButtonIndex));
 
@@ -145,6 +145,15 @@ public class MemoryController implements Initializable {
             lose.setVisible(true);
             player.stop();
             time.setEnd(true);
+            loseReason.setText("Time's up!");
+            playAgainField.setVisible(true);
+        }
+        if (turn == 0) {
+            gameLoop.stop();
+            lose.setVisible(true);
+            player.stop();
+            time.setEnd(true);
+            loseReason.setText("Out of turn!");
             playAgainField.setVisible(true);
         }
     }
@@ -169,13 +178,15 @@ public class MemoryController implements Initializable {
     void onPlayAgain() {
         time.setEnd(true);
         player.play();
+        firstButtonClicked = false;
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText("");
         }
+        turn = 25;
         win.setVisible(false);
         lose.setVisible(false);
         playAgainField.setVisible(false);
-        time = new GameTime(timerLabel, 45);
+        time = new GameTime(timerLabel, 30);
         cnt = 0;
         memoryGame = new Memory();
         memoryGame.setupGame();

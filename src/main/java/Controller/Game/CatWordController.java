@@ -60,7 +60,7 @@ public class CatWordController implements Initializable {
         questionField.setVisible(false);
         count = 0;
         game = new CatWord();
-        time = new GameTime(timerLabel, 45);
+        time = new GameTime(timerLabel, 30);
         quiz.init();
         Collections.shuffle(questionList);
         Canvas canvas = new Canvas(320, 320);
@@ -175,19 +175,16 @@ public class CatWordController implements Initializable {
         Cat cat = game.getMap().getCat();
         if (cat.isQuestion() && questionList.get(count) instanceof FillWordQuestion) {
             String answer = answerField.getText().trim().toUpperCase();
+            System.out.println(answer);
             int x = cat.getxUnit();
             int y = cat.getyUnit();
             if (questionList.get(count).isTrue(answer)) {
                 game.getMap().updateMap(x, y, new CorrectMark(x, y, Sprite.correct_mark.getFxImage()));
-                question.setText(questionList.get(count).getTitle().replace('_', answer.charAt(0)));
                 MediaPlayer correct = new MediaPlayer(correct_sound);
                 correct.play();
             } else {
                 game.getMap().updateMap(x, y, new Wall(x, y, Sprite.wall.getFxImage()));
                 cat.back();
-                String ans = questionList.get(count).getTitle();
-                ans = "Correct answer: " + ans.replace('_', questionList.get(count).getCorrectAns().charAt(0));
-                question.setText(ans);
                 cntWrong++;
                 MediaPlayer wrong = new MediaPlayer(wrong_sound);
                 wrong.play();
@@ -213,7 +210,7 @@ public class CatWordController implements Initializable {
         questionField.setVisible(false);
         answerField.clear();
         game = new CatWord();
-        time = new GameTime(timerLabel, 45);
+        time = new GameTime(timerLabel, 30);
         Collections.shuffle(questionList);
         gameLoop.start();
         time.run();

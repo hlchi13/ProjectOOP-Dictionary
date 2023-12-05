@@ -67,12 +67,17 @@
                 <Font size="15.0" />
             </font>
         </Button>
+      <Label fx:id="turnLabel" alignment="CENTER" layoutX="233.0" layoutY="28.0" prefHeight="43.0" prefWidth="162.0" styleClass="game-label" stylesheets="@../game.css">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
         <Button fx:id="exitButton" layoutX="532.0" layoutY="28.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="43.0" prefWidth="126.0" styleClass="menu-btn" stylesheets="@../game.css" text="Back">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-      <Label fx:id="timerLabel" layoutX="41.0" layoutY="28.0" prefHeight="43.0" prefWidth="162.0" styleClass="game-label" stylesheets="@../game.css">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="41.0" layoutY="28.0" prefHeight="43.0" prefWidth="162.0" styleClass="game-label" stylesheets="@../game.css">
          <font>
             <Font size="20.0" />
          </font>
@@ -91,6 +96,11 @@
             <Label alignment="CENTER" layoutX="229.0" layoutY="91.0" prefHeight="43.0" prefWidth="242.0" text="Lose">
                <font>
                   <Font name="System Bold" size="44.0" />
+               </font>
+            </Label>
+            <Label fx:id="loseReason" alignment="CENTER" layoutX="269.0" layoutY="150.0" prefHeight="43.0" prefWidth="162.0" text="Label">
+               <font>
+                  <Font name="System Italic" size="20.0" />
                </font>
             </Label>
          </children>

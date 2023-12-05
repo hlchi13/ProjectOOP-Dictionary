@@ -4406,7 +4406,6 @@ yes	Vâng
 yesterday	hôm qua
 yet	chưa
 yield	năng suất
-you bạn
 young	trẻ
 youngster	thiếu niên
 your	của bạn

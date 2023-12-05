@@ -61,28 +61,8 @@ public class DatabaseDictionary {
      * Ref: https://stackoverflow.com/questions/2513707/how-to-convert-html-to-text-keeping-linebreaks
      */
     private static String htmlToText(String html) {
-        Document document = Jsoup.parse(html);
-        Element body = document.body();
-        return buildStringFromNode(body).toString();
-    }
-
-    private static StringBuffer buildStringFromNode(Node node) {
-        StringBuffer buffer = new StringBuffer();
-        if (node instanceof TextNode) {
-            TextNode textNode = (TextNode) node;
-            buffer.append(textNode.text().trim());
-        }
-        for (Node childNode : node.childNodes()) {
-            buffer.append(buildStringFromNode(childNode));
-        }
-        if (node instanceof Element) {
-            Element element = (Element) node;
-            String tagName = element.tagName();
-            if ("p".equals(tagName) || "br".equals(tagName)) {
-                buffer.append("\n");
-            }
-        }
-        return buffer;
+        String text = Jsoup.parse(html).wholeText();
+        return text;
     }
 
     private static void connectToDatabase() throws SQLException {

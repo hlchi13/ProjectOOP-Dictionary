@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.util.*;
 
 public class Memory {
-    private final int boardRows = 3;
-    private final int boardCols = 4;
-    private final int boardSize = boardRows * boardCols;
+    private static final int ROWS = 3;
+    private static final int COLS = 4;
+    private final int boardSize = ROWS * COLS;
     private final Random random = new Random();
 
     private final ArrayList<String> memoryBoard = new ArrayList<>(Arrays.asList("", "", "", "", "", "", "", "", "", "", "", ""));
     private final ArrayList<String> memoryOptions = new ArrayList<>();
+    private Map<String, String> pairs = new HashMap<>();
     public void setupGame(){
         loadMemoryOptions();
         setupMemoryBoard();
@@ -28,6 +29,8 @@ public class Memory {
             String line;
             while ((line = br.readLine()) != null) {
                 allOptions.add(line);
+                String[] pair = line.split("\t");
+                pairs.put(pair[0], pair[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,6 +45,7 @@ public class Memory {
             memoryOptions.add(vietnameseMeaning1);
         }
     }
+
     public String getOptionAtIndex(int index){
         return memoryBoard.get(index);
     }
@@ -50,9 +54,9 @@ public class Memory {
         Collections.shuffle(memoryOptions);
         for (int i = 0; i < boardSize; i++) {
             String memoryOption = memoryOptions.get(i);
-            int row = i / boardCols;
-            int col = i % boardCols;
-            int position = row * boardCols + col;
+            int row = i / COLS;
+            int col = i % COLS;
+            int position = row * COLS + col;
             while (!Objects.equals(memoryBoard.get(position), "")) {
                 position = random.nextInt(boardSize);
             }
@@ -63,19 +67,13 @@ public class Memory {
     public boolean checkTwoPositions(int firstIndex, int secondIndex){
         String firstPair = memoryBoard.get(firstIndex);
         String secondPair = memoryBoard.get(secondIndex);
-
-        String fileName = "src/main/resources/Game/Words.txt";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Kiểm tra xem có chứa cả hai từ và có cách nhau một dấu tab hay không
-                if (line.contains(firstPair + "\t" + secondPair) || line.contains(secondPair + "\t" + firstPair)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        // firstPair is english
+        if (pairs.get(firstPair) != null && pairs.get(firstPair).equals(secondPair)) {
+            return true;
+        }
+        // firstPair is vietnamese
+        if (pairs.get(secondPair) != null && pairs.get(secondPair).equals(firstPair)) {
+            return true;
         }
         return false;
     }

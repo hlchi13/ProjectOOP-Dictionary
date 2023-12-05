@@ -22,7 +22,20 @@ public class QuestionList {
     }
 
     public void initFillWordQuestion() {
-        List<String> allWord = DatabaseDictionary.getAllWords();
+        List<String> allWord = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader("src/main/resources/Game/Words.txt");
+            BufferedReader br = new BufferedReader(fileReader);
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] quiz = line.split("\t");
+                allWord.add(quiz[0]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Collections.shuffle(allWord);
         List<String> wordList = allWord.subList(0, 20);
         for (String x : wordList) {
