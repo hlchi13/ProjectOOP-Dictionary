@@ -48,17 +48,14 @@ public class Memory {
 
     private void setupMemoryBoard(){
         Collections.shuffle(memoryOptions);
-
         for (int i = 0; i < boardSize; i++) {
             String memoryOption = memoryOptions.get(i);
             int row = i / boardCols;
             int col = i % boardCols;
-
             int position = row * boardCols + col;
             while (!Objects.equals(memoryBoard.get(position), "")) {
                 position = random.nextInt(boardSize);
             }
-
             memoryBoard.set(position, memoryOption);
         }
     }

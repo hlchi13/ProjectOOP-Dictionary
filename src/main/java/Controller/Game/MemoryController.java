@@ -3,6 +3,8 @@ package Controller.Game;
 import Game.GameTime;
 import Game.Memory.Memory;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
+import javafx.scene.media.Media;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,8 +63,15 @@ public class MemoryController implements Initializable {
     private int secondButtonIndex;
     private boolean match;
 
+    private final Media gameBg = new Media(new File("./src/main/resources/Game/sound/gameBg2.mp3").toURI().toString());
+    private final Media correct = new Media(new File("./src/main/resources/Game/sound/correct2.mp3").toURI().toString());
+    private final Media wrong = new Media(new File("./src/main/resources/Game/sound/wrong2.mp3").toURI().toString());
+    private final Media click = new Media(new File("./src/main/resources/Game/sound/pick.mp3").toURI().toString());
+    private MediaPlayer player;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        player = new MediaPlayer(gameBg);
+        player.play();
         time = new GameTime(timerLabel, 45);
         memoryGame = new Memory();
         memoryGame.setupGame();
@@ -78,6 +93,10 @@ public class MemoryController implements Initializable {
 
     @FXML
     void buttonClicked(ActionEvent event) {
+        MediaPlayer playCorrect = new MediaPlayer(correct);
+        MediaPlayer playWrong = new MediaPlayer(wrong);
+        MediaPlayer playerClick = new MediaPlayer(click);
+        playerClick.play();
         if(!firstButtonClicked){
             //If next turn is started before old buttons are hidden
             if(!match){
@@ -95,45 +114,48 @@ public class MemoryController implements Initializable {
 
             return;
         }
-
         //Get clicked button memory letter
         String buttonId = ((Control)event.getSource()).getId();
         secondButtonIndex = Integer.parseInt(buttonId.substring(6));  // Extract the entire index substring
-
         //Change clicked button text
         buttons.get(secondButtonIndex).setText(memoryGame.getOptionAtIndex(secondButtonIndex));
         firstButtonClicked = false;
-
         //Check if the two clicked button match
         if(memoryGame.checkTwoPositions(firstButtonIndex,secondButtonIndex)){
             cnt++;
             System.out.println("Match");
             match = true;
-            return;
+            playerClick.stop();
+            playCorrect.play();
+        } else {
+            playerClick.stop();
+            playWrong.play();
         }
     }
 
     private void gameState() {
-        System.out.println(cnt);
         if (cnt == 6) {
             gameLoop.stop();
+            player.stop();
             win.setVisible(true);
-            time.setEnd(true);
             playAgainField.setVisible(true);
         }
         if (time.isEnd()) {
             gameLoop.stop();
             lose.setVisible(true);
+            player.stop();
             time.setEnd(true);
             playAgainField.setVisible(true);
         }
     }
+
     private void hideButtons(){
         buttons.get(firstButtonIndex).setText("");
         buttons.get(secondButtonIndex).setText("");
     }
 
     public void exitButtonOnAction (ActionEvent event) {
+        player.stop();
         try {
             AnchorPane component = FXMLLoader.load(getClass().getResource("/Game/fxml/HomeGameUI.fxml"));
             container.getChildren().clear();
@@ -145,6 +167,11 @@ public class MemoryController implements Initializable {
 
     @FXML
     void onPlayAgain() {
+        time.setEnd(true);
+        player.play();
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText("");
+        }
         win.setVisible(false);
         lose.setVisible(false);
         playAgainField.setVisible(false);
@@ -152,6 +179,8 @@ public class MemoryController implements Initializable {
         cnt = 0;
         memoryGame = new Memory();
         memoryGame.setupGame();
+        gameLoop.start();
+        time.run();
     }
 
     @FXML
